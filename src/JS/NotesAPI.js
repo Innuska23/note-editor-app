@@ -14,7 +14,6 @@ export default class NotesAPI {
         const notes = NotesAPI.getAllNotes();
         const existing = notes.find(note => note.id == noteToSave.id);
 
-        // Edit/Update
         if (existing) {
             existing.title = noteToSave.title;
             existing.body = noteToSave.body;
@@ -35,15 +34,3 @@ export default class NotesAPI {
         localStorage.setItem("notesapp-notes", JSON.stringify(newNotes));
     }
 }
-
-// const bntDelete = document.querySelector('#btn-delete')
-// bntDelete.addEventListener('click', () => {
-// console.log(bntDelete);
-// });
-// const removebntDelete = (fieldName, id) => {
-//     try {
-//         const list = JSON.parse(localStorage.getItem(fieldName));
-//         const result = list.filter((existFilm) => existFilm.id !== id);
-
-//         localStorage.setItem(fieldName, JSON.stringify(result));
-//     } catch { }

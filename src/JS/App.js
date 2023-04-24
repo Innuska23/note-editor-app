@@ -35,7 +35,7 @@ export default class App {
         return {
             onNoteSelect: noteId => {
                 const selectedNote = this.notes.find(note => note.id == noteId);
-                this._setActiveNote(selectedNote);
+                selectedNote && this._setActiveNote(selectedNote);
             },
             onNoteAdd: () => {
                 const newNote = {

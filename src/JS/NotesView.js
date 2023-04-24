@@ -43,7 +43,9 @@ export default class NotesView {
         const date = format(new Date(updated), 'EEEE, dd MMM yyyy \'at\' HH:mm');
         return `
             <div class="notes__list-item" data-note-id="${id}">
-                <div class="notes__small-title">${title}</div>
+                <div class="notes__small-title">${title}
+                    <button class="btn-delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
                 <div class="notes__small-body">
                     ${body.substring(0, MAX_BODY_LENGTH)}
                     ${body.length > MAX_BODY_LENGTH ? "..." : ""}
@@ -70,14 +72,14 @@ export default class NotesView {
             noteListItem.addEventListener("click", () => {
                 this.onNoteSelect(noteListItem.dataset.noteId);
             });
-
-            noteListItem.addEventListener("dblclick", () => {
-                const doDelete = confirm("Are you sure you want to delete this note?");
-
-                if (doDelete) {
-                    this.onNoteDelete(noteListItem.dataset.noteId);
-                }
-            });
+            
+            noteListItem.querySelector(".btn-delete").addEventListener("click", () => {
+                    const doDelete = confirm("Are you sure you want to delete this note?");
+    
+                    if (doDelete) {
+                        this.onNoteDelete(noteListItem.dataset.noteId);
+                    }
+                });
         });
     }
 
